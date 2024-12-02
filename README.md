@@ -33,7 +33,7 @@ The easiest way to get started as an administrator is to:
 
 1) populate your own user profile with any data that you might want exposed
    in your email template
-2) Visit the admin settings /admin/settings.php?section=manageemailtemplate and you
+2) Visit the admin settings /admin/tool/emailtemplate/template.php and you
    will see a json data structure of all the data available to be used in your mustache template
 3) Fill in the email mustache template and previewing it on your own profile page (see below). 
    For mustache syntax see: http://mustache.github.io/mustache.5.html

@@ -81,5 +81,12 @@ document.getElementById('copy').addEventListener('click', function(e) {
 </script>
 EOF;
 
+if (has_capability('tool/emailtemplate:manage', context_system::instance())) {
+    $manageurl = new moodle_url('/admin/tool/emailtemplate/template.php');
+    echo html_writer::link($manageurl, get_string('emailtemplate:manage', 'tool_emailtemplate'), [
+        'class' => 'btn btn-secondary',
+    ]);
+}
+
 echo $OUTPUT->footer();
 

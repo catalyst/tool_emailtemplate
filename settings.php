@@ -26,41 +26,17 @@
 defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
+    $category = new admin_category('tool_emailtemplate', get_string('pluginname', 'tool_emailtemplate'));
+    $ADMIN->add('tools', $category);
 
-    $settings = new admin_settingpage('manageemailtemplate', new lang_string('pluginfile', 'tool_emailtemplate'));
-    $ADMIN->add('tools', $settings);
+    $settings = new admin_settingpage('tool_emailtemplate_settings', get_string('generalsettings', 'admin'));
+    $ADMIN->add('tool_emailtemplate', $settings);
 
-    // This needs to be a configtextarea and not a confightmleditor because
-    // atto & html tidy will mangle the mustache tags.
-
-    $data = (new \tool_emailtemplate\footer($USER))->get_data();
-    $data = '<pre>' . json_encode($data, JSON_PRETTY_PRINT) . '</pre>';
-
-    $settings->add(new admin_setting_configtextarea(
-        'tool_emailtemplate/template',
-        get_string('configtemplate', 'tool_emailtemplate'),
-        get_string('configtemplate_help', 'tool_emailtemplate') . $data,
-        '',
-        PARAM_RAW,
-        60,
-        30
-    ));
-
-    $settings->add(new admin_setting_configtextarea(
-        'tool_emailtemplate/global_vars',
-        get_string('global_vars', 'tool_emailtemplate'),
-        get_string('global_vars_desc', 'tool_emailtemplate'),
-        '',
-        PARAM_RAW
-    ));
-
-    $settings->add(new admin_setting_configstoredfile(
-        'tool_emailtemplate/images',
-        get_string('images', 'tool_emailtemplate'),
-        get_string('imagesdesc', 'tool_emailtemplate'),
-        'images',
-        0,
-        ['maxfiles' => 8, 'accepted_types' => ['web_image']]
+    $ADMIN->add('tool_emailtemplate', new admin_externalpage(
+        'tool_emailtemplate_template',
+        get_string('emailtemplate:manage', 'tool_emailtemplate'),
+        new moodle_url('/admin/tool/emailtemplate/template.php'),
+        'tool/emailtemplate:manage'
     ));
 
     $settings->add(new admin_setting_configcheckbox(
