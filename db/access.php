@@ -40,4 +40,13 @@ $capabilities = [
             'manager' => CAP_ALLOW
         ],
     ],
+    'tool/emailtemplate:manage' => [
+
+        'riskbitmask' => RISK_XSS | RISK_CONFIG,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => [
+            'manager' => CAP_ALLOW,
+        ],
+    ],
 ];

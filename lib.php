@@ -92,7 +92,7 @@ function tool_emailtemplate_pluginfile($course, $cm, $context, $filearea, $args,
  * @return void
  */
 function tool_emailtemplate_update_tracking($info) {
-    GLOBAL $DB;
+    global $DB;
 
     // Confirm data is formatted correctly and contains the required info.
     $date = date('Y-m-d');

@@ -164,8 +164,8 @@ class footer {
     public function get_html(): string {
         $mustache = $this->get_mustache();
         $data = $this->get_data();
-        $config = get_config('tool_emailtemplate');
-        $footer = $mustache->render($config->template, $data);
+        $template = get_config('tool_emailtemplate', 'template');
+        $footer = $mustache->render($template, $data);
 
         // Clean up blank lines.
         $footer = preg_replace('/\s*($|\n)/', '\1', $footer);
